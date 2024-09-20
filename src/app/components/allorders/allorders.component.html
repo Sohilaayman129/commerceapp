@@ -1,0 +1,25 @@
+<section  class="my-5 py-5 rounded-3  mx-auto w-75 " >
+    <h2 class="text-main text-center py-5">{{"allorders.All Orders"|translate}}</h2>
+    
+    <div class="row">
+    @for (order of dataorders() ; track order.id     ) {
+        <div class="order col-md-6 col-lg-12 ">
+            <div  class=" p-2 border  shadow   my-1 ">
+                <h5 class=" mb-0 py-1" ><strong class="text-main">{{"allorders.Name:"|translate}}</strong> {{order.user.name}}</h5>
+                <p class="mb-0 py-1"><strong class="text-main">{{"allorders.Phone:"|translate}}</strong> {{order.user.phone}}</p>   
+            <h5 class="small mb-0 py-1"><strong class="text-main">{{"allorders.Pay Type:"|translate}}</strong>{{order.paymentMethodType}}</h5>
+                <p class="smal1 mb-0 py-1" ><strong class="text-main">{{"allorders.Total Price:"|translate}}</strong> {{order.totalOrderPrice| currency:'GBP'}}</p>
+               <h2 class="h6 mb-0 py-1"><strong class="text-main">{{"allorders.IsPaid:"|translate}}</strong> {{order.isPaid}}</h2>
+               <h6 class="m-0 py-1"><strong class="text-main">{{"allorders.Id:"|translate}}</strong> {{order.id}}</h6>
+               <h4 class="small py-1"><strong class="text-main">{{"allorders.Created At:"|translate}}</strong> 
+                {{order.createdAt |date}}</h4>
+                </div>
+        </div>
+     }
+       
+    
+    
+    
+    </div>
+    </section>
+    

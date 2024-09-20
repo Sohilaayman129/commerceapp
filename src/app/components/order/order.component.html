@@ -1,0 +1,75 @@
+<section class="my-5 shadow rounded-3  mx-auto w-50  " >
+    <h2 class="text-main text-center pt-5">{{"order.Address"|translate}}</h2>
+   
+    <form  [formGroup]="orders" (ngSubmit)="orderSubmit()" >
+         
+ 
+    
+      <div class="m-2"   >
+        <label for="details">{{"order.details"|translate}}</label>
+        <textarea formControlName="details"  id="details" type="text" class="form-control" ></textarea> 
+          
+                 
+        @if (orders.get('details')?.errors && (orders.get('details')?.touched ||orders.get('details')?.dirty)) {
+        
+            <div class="alert alert-danger w-50 "> 
+              <P class="m-0  text-danger "  >{{"order.details is Required"|translate}}</P>
+              
+              </div>
+      
+        }
+    </div>
+
+
+      <div class="m-2"   >
+        <label for="phone">{{"order.phone"|translate}}</label>
+        <input 
+         formControlName="phone"  id="phone" type="tel" class="form-control"  >
+                 
+        @if (orders.get('phone')?.errors && (orders.get('phone')?.touched ||orders.get('phone')?.dirty)) {
+        
+            <div class="alert alert-danger w-50 "> 
+                @if (orders.get('phone')?.getError('required')) {
+
+                    <P class="m-0  text-danger "  >  {{"order.phone is Required"|translate}} </P>
+                }
+            @else if (orders.get('phone')?.getError('pattern')) {
+
+                <P class="m-0  ng-star-inserted">{{"order.Enter valid phone"|translate}}</P>
+            }
+
+              </div>
+      
+        }
+    </div>
+      <div class="m-2"   >
+        <label for="city">{{"order.city"|translate}}</label>
+        <input 
+         formControlName="city"  id="city" type="tel" class="form-control"  >
+                 
+        @if (orders.get('city')?.errors && (orders.get('city')?.touched ||orders.get('city')?.dirty)) {
+        
+            <div class="alert alert-danger w-50 "> 
+              <P class="m-0  text-danger ">{{"order.city is Required"|translate}}</P>
+              </div>
+      
+        }
+    </div>
+
+
+    
+  
+        
+
+      
+         <div class="text-center p-3"> 
+            <button   class="btn-main w-25" type="submit">{{"order.Pay Now"|translate}}
+              @if (IsLoading()) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+            }
+            </button>
+         </div>
+      
+    </form>
+    
+</section>

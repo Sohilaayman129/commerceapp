@@ -1,0 +1,95 @@
+
+
+<section class="login rounded-3 shadow my-3 p-3"  >
+    <h1 class="h3 text-main  p-2">{{"login.loginNow :"|translate}}</h1>
+
+
+    <form [formGroup]="loginform" (ngSubmit)="Loginsubmit()"   >
+
+        <div class="m-2"   >
+            <label for="email">{{"login.email"|translate}}</label>
+            <input  [ngClass]="{
+                'is-valid':   ! loginform.get('email')?.errors &&( loginform.get('email')?.touched ||loginform.get('email')?.dirty) ,
+                'is-invalid':loginform.get('email')?.errors &&( loginform.get('email')?.touched ||loginform.get('email')?.dirty)
+   
+               }"
+            formControlName="email" id="email" type="email" class="form-control"  >
+
+            @if (loginform.get('email')?.errors && (loginform.get('email')?.touched ||loginform.get('email')?.dirty)) {
+            
+                <div class="alert alert-danger w-50">
+                    @if (loginform.get('email')?.getError('required')) {
+
+                        <P class="m-0">{{"login.Email is Required"|translate}}</P>
+                    }
+                @else if (loginform.get('email')?.getError('email')) {
+
+                    <P class="m-0">{{"login.Enter valid Email"|translate}}</P>
+                }
+
+                  </div>
+          
+            }
+              
+        </div>
+
+        <div class="m-2"   >
+            <label for="password">{{"login.password"|translate}}</label>
+            <input   [ngClass]="{
+                'is-valid':   ! loginform.get('password')?.errors &&( loginform.get('password')?.touched ||loginform.get('password')?.dirty) ,
+                'is-invalid':loginform.get('password')?.errors &&( loginform.get('password')?.touched ||loginform.get('password')?.dirty)
+   
+               }"
+             formControlName="password" id="password" type="password" class="form-control"  >
+
+            @if (loginform.get('password')?.errors && (loginform.get('password')?.touched  ||loginform.get('password')?.dirty)) {
+            
+                <div class="alert alert-danger w-50">
+                    @if (loginform.get('password')?.getError('required')) {
+
+                        <P class="m-0"> {{"login.password is Required"|translate}}</P>
+                    }
+                @else if (loginform.get('password')?.getError('pattern')) {
+
+                    <P class="m-0">{{"login.Enter valid password"|translate}}</P>
+                }
+
+                  </div>
+          
+            }
+        </div>
+   
+
+                @if (MsgError()) {
+                    <p  class="alert alert-danger w-50 m-0 ">{{"login.MsgError()"|translate}}</p>
+
+                     }
+                     
+        <div class="d-flex align-items-center justify-content-end gap-4 p-2">
+            
+            <a routerLink="/forget" class="link-primary">{{"login.Forgotten password?"|translate}}</a>
+        
+        <button     type="submit" class="btn-main  ">{{"login.login"|translate}}
+
+                @if (IsLoading()) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+
+        </button>
+        </div>
+        @if (MsgSuccess())
+         {   
+             <div class="p-3 d-flex justify-content-center align-content-center text-main fs-3">
+                <p class="text-uppercase me-1">{{"login.Done"|translate}}</p>
+           <div><i class="fa-solid fa-circle-check"></i></div> 
+             </div>
+      
+           
+        }
+
+    </form>
+
+</section>
+
+
+
