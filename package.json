@@ -1,6 +1,10 @@
 {
   "name": "e-commerce",
   "version": "0.0.0",
+  "private": true,
+"engines": {
+  "node": "22.x"
+},
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
